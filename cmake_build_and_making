@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cmake -B ./Build -S . && cmake --build ./Build && mkdir -p ./Server && mv ./Build/exe ./Server/exe && echo "Server is builded and compiled. Builded files are lying within the Build directory. Executable file is lying within the Server directory."
