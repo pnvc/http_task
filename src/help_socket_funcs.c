@@ -87,7 +87,9 @@ ssize_t Recv_0_flags(int cs, char *buf, size_t buf_len)
 	return recv_return;
 }
 
-#if 0
+/*
+ * Send_0_flags does send and check errors + exit if < 0, returns send return bytes
+ */
 ssize_t Send_0_flags(int cs, const char *buf, size_t buf_len)
 {
 	ssize_t send_return = send(cs, buf, buf_len, 0);
@@ -97,4 +99,3 @@ ssize_t Send_0_flags(int cs, const char *buf, size_t buf_len)
 	}
 	return send_return;
 }
-#endif
