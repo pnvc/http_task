@@ -3,6 +3,7 @@
 
 static char buf_recv[1450];
 static char buf_send[1450];
+static const char header_404[] = "HTTP/1.1 404";
 
 int main()
 {
@@ -18,16 +19,10 @@ int main()
 		buf_recv[recv_return] = 0;
 		
 		const char *request_file_name = get_request_file_name(buf_recv);
+		int request_file_length = get_request_file_length(request_file_name);
 
-		/* Forming header, HEAD, BODY and send */
-			
-		const char header[] = "HTTP/1.1 200 OK \r\n\
-Version: HTTP/1.1\r\n\
-Content-Type: text/html; charset=utf8\r\n\
-Content-length: ";
-
-
-		/* Forming header, HEAD, BODY and send */
+		/* Forming response */
+		/* Forming response */
 
 		close(cs);
 	}

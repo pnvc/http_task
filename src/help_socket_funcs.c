@@ -1,4 +1,5 @@
 #include "help_socket_funcs.h"
+#include <stdlib.h>
 
 /*
  * socket_inet_stream calls socket(AF_INET, SOCK_STREAM, 0) and return result
@@ -85,3 +86,15 @@ ssize_t Recv_0_flags(int cs, char *buf, size_t buf_len)
 	}
 	return recv_return;
 }
+
+#if 0
+ssize_t Send_0_flags(int cs, const char *buf, size_t buf_len)
+{
+	ssize_t send_return = send(cs, buf, buf_len, 0);
+	if (send_return < 0) {
+		perror("Send\n");
+		exit(EXIT_FAILURE);
+	}
+	return send_return;
+}
+#endif
