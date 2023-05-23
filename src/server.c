@@ -6,7 +6,6 @@ enum lens {
 };
 
 static char buf_recv[br_len];
-
 static const char h404[] = "HTTP/1.1 404\r\n\
 Version: HTTP/1.1\r\n\
 Content-Type: text/html\r\n\
