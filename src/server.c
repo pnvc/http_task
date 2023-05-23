@@ -54,9 +54,8 @@ int main()
 			if (Send_0_flags(cs, h200, h200_len) < 0 || Send_0_flags(cs, (const char*)rfl_string, snprintf_return) < 0) {
 				close(cs);
 				continue;
-			} else {
-				Send_request_file(request_file_name, cs);
 			}
+			Send_request_file(request_file_name, cs);
 		}
 		close(cs);
 	}
