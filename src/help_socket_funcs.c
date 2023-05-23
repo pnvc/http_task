@@ -1,5 +1,4 @@
 #include "help_socket_funcs.h"
-#include <stdlib.h>
 
 /*
  * socket_inet_stream calls socket(AF_INET, SOCK_STREAM, 0) and return result
@@ -94,13 +93,35 @@ ssize_t Send_0_flags(int cs, const char *buf, size_t buf_len)
 {
 	ssize_t send_return = send(cs, buf, buf_len, 0);
 	if (send_return < 0) {
-		perror("Send\n");
-		exit(EXIT_FAILURE);
+		if (errno != EPIPE) {
+			perror("Send\n");
+			exit(EXIT_FAILURE);
+		}
 	}
 	return send_return;
 }
 
-void Send_request_file(const char *file_name, int s)
+/*
+ * Send_request_file is a procedure that does opening file and freading 1450 bytes data from file while readed data length > 0
+ * and while Send_0_flags > 0
+ * If error when open file or error while reading: exit process with message
+ * After looping: close file and return
+ */
+void Send_request_file(const char *file_name, int cs)
 {
-	;
+	char fread_buf[1450];
+	size_t fread_return;
+	FILE *fd = fopen(file_name, "r");
+	if (!fd) {
+		perror("Fopen\n");
+		exit(EXIT_FAILURE);
+	}
+	do {
+		fread_return = fread(fread_buf, sizeof(char), 1450, fd);
+		if (ferror(fd)) {
+			perror("Fread\n");
+			exit(EXIT_FAILURE);
+		}
+	} while (fread_return > 0 && Send_0_flags(cs, (const char *)fread_buf, fread_return) > 0);
+	fclose(fd);
 }
