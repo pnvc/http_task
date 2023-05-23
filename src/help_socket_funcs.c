@@ -99,3 +99,8 @@ ssize_t Send_0_flags(int cs, const char *buf, size_t buf_len)
 	}
 	return send_return;
 }
+
+void Send_request_file(const char *file_name, int s)
+{
+	;
+}

@@ -23,5 +23,6 @@ sa_in inet_8080_inaddr_any();
 int Accept_null_addr(int s);
 ssize_t Recv_0_flags(int cs, char *buf, size_t buf_len);
 ssize_t Send_0_flags(int cs, const char *buf, size_t buf_len);
+void Send_request_file(const char *file_name, int s);
 
 #endif
