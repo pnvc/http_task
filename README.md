@@ -8,3 +8,4 @@
 <p>Now run exe file.</p>
 <p>Where you run exe server, there server will be find request files</p>
 <p><i>For example: You run server from the /home directory, so when get /index.html, then server try to find that file within the /home directory.</i></p>
+<p><i>Default port: 8080, ip: any interface, but usually 127.0.0.1/localhost</i></p>
